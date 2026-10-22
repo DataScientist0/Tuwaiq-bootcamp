@@ -48,7 +48,7 @@
                 </div>
               
                 <p class="mb-5 text-sm text-white/70">
-                   You Already have an account? <a href="{{ route('login') }}" class="font-semibold text-tuwaiq-teal hover:underline">Log In</a>
+                   Already have an account? <a href="{{ route('login') }}" class="font-semibold text-tuwaiq-teal hover:underline">Log In</a>
                 </p>
 
                 <button type="submit" class="btn-primary w-full py-3">Sign Up</button>
