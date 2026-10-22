@@ -100,8 +100,8 @@ brew install php composer node
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/tuwaiq-bootcamp.git
-cd tuwaiq-bootcamp
+git clone https://github.com/DataScientist0/Tuwaiq-bootcamp.git
+cd Tuwaiq-bootcamp
 
 # 2. Install PHP and JavaScript dependencies
 composer install
