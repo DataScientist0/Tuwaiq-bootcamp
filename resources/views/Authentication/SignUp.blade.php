@@ -6,7 +6,7 @@
         <div>
             <form action="{{ route('signup') }}" method="POST" class="glass mx-auto w-full max-w-md p-8">
                 @csrf
-                <h1 class="text-center text-3xl font-bold text-white">Sign Up</h1>
+                <h1 class="text-center text-3xl font-bold"><span class="gradient-text">Sign Up</span></h1>
                 <p class="mt-2 mb-6 text-center text-sm text-white/60">Create an account to share your favourite quotes.</p>
                 <div class="mb-4">
                     <label for="name" class="label">Name</label>

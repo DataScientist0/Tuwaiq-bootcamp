@@ -7,7 +7,7 @@
         <form action="{{ route('login') }}" method="POST" class="glass mx-auto w-full max-w-md p-8">
             @csrf
 
-            <h1 class="text-center text-3xl font-bold text-white">Log In</h1>
+            <h1 class="text-center text-3xl font-bold"><span class="gradient-text">Log In</span></h1>
             <p class="mt-2 mb-6 text-center text-sm text-white/60">Welcome back! Log in to share and like quotes.</p>
 
             <div class="mb-4">
