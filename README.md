@@ -126,6 +126,19 @@ Open **http://localhost:8000**.
 
 > 💡 While working on the design, run `npm run dev` in a second terminal so CSS and JS changes show up instantly.
 
+### Running from the submitted ZIP
+
+The submitted source code ZIP already includes a ready SQLite database with the sample data (`database/database.sqlite`) and the built front-end assets (`public/build`). From the project folder, run only:
+
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
+
+To rebuild the database from the migrations instead, run `php artisan migrate:fresh --seed`.
+
 ### Sample data
 
 `php artisan migrate --seed` creates:
