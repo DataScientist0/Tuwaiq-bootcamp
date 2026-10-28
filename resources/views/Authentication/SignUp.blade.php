@@ -1,9 +1,6 @@
 @extends('Layout.AuthImg')
-@extends('Layout.app')
 
 @section('title', 'Sign Up')
-@section('content')
-
 @section('form')
 
         <div>
@@ -56,5 +53,3 @@
         </div>
         
 @endsection
-@endsection
-

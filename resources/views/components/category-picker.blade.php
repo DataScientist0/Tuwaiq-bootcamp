@@ -14,4 +14,5 @@
             </label>
         @endforeach
     </div>
+    <p class="mt-1 text-xs text-white/50">Choose one category.</p>
 </fieldset>
