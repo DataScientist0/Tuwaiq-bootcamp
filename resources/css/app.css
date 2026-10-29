@@ -87,11 +87,11 @@
 @keyframes purple-pulse {
     0%,
     100% {
-        border-color: rgb(139 92 246 / 0.6);
+        --edge-color: rgb(139 92 246 / 0.6);
         box-shadow: 0 0 8px rgb(139 92 246 / 0.35);
     }
     50% {
-        border-color: rgb(216 180 254 / 0.8);
+        --edge-color: rgb(216 180 254 / 0.85);
         box-shadow: 0 0 18px rgb(192 132 252 / 0.6);
     }
 }
@@ -131,19 +131,103 @@
     animation: glow-spin 6s linear infinite;
 }
 
+/* Glitter: a continuous shimmering streak that sweeps along the edges */
+:root {
+    --glitter: linear-gradient(
+            100deg,
+            transparent 0 38%,
+            rgb(196 181 253 / 0.7) 43%,
+            rgb(255 255 255 / 0.95) 47%,
+            rgb(103 232 249 / 0.95) 50%,
+            rgb(255 255 255 / 0.95) 53%,
+            rgb(196 181 253 / 0.7) 57%,
+            transparent 62% 100%
+        )
+        0 0 / 300% 100% no-repeat;
+}
+
+@keyframes glitter-drift {
+    from {
+        background-position: 100% 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+.glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 3px;
+    border-radius: inherit;
+    background: var(--glitter);
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: glitter-drift 3.5s ease-in-out infinite;
+}
+
+.input {
+    --fill: rgb(30 18 62);
+    -webkit-appearance: none;
+    appearance: none;
+    border-width: 2px;
+    border-color: transparent;
+    background:
+        linear-gradient(var(--fill), var(--fill)) padding-box,
+        var(--glitter),
+        linear-gradient(var(--edge-color), var(--edge-color)) border-box;
+    background-origin: border-box;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+}
+
+@property --edge-color {
+    syntax: '<color>';
+    initial-value: rgb(139 92 246 / 0.6);
+    inherits: false;
+}
+
+@keyframes input-glitter-drift {
+    from {
+        background-position: 0 0, 100% 0, 0 0;
+    }
+    to {
+        background-position: 0 0, 0 0, 0 0;
+    }
+}
+
 .input:not(:user-invalid):not(:focus) {
-    animation: purple-pulse 3s ease-in-out infinite;
+    animation:
+        purple-pulse 3s ease-in-out infinite,
+        input-glitter-drift 3.5s ease-in-out infinite;
 }
 
 .input:focus {
-    border-color: #c4b5fd;
+    --fill: rgb(42 26 84);
+    --edge-color: #c4b5fd;
+    border-color: transparent;
     box-shadow: 0 0 0 4px rgb(167 139 250 / 0.2), 0 0 18px rgb(192 132 252 / 0.5);
+    animation: input-glitter-drift 3.5s ease-in-out infinite;
+}
+
+.input:user-invalid {
+    --edge-color: #f87171;
+    border-color: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .site-name,
     .gradient-text,
     .glass::before,
+    .glass::after,
     .input {
         animation: none !important;
     }

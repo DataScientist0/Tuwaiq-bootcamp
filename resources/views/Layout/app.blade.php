@@ -9,14 +9,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body
-    class="min-h-screen bg-tuwaiq-night bg-fixed bg-center bg-no-repeat text-tuwaiq-text antialiased"
-    style="
-        background-image: url('{{ asset('images/background-lights.jpg') }}');
-        background-size: cover;
-    "
->
-<canvas id="light-rain" class="pointer-events-none fixed inset-0 -z-10 h-full w-full" aria-hidden="true"></canvas>
+<body class="min-h-screen bg-tuwaiq-night text-tuwaiq-text antialiased">
+<canvas id="light-scene" class="pointer-events-none fixed top-0 left-0 -z-20 w-full" aria-hidden="true"></canvas>
+<canvas id="light-rain" class="pointer-events-none fixed top-0 left-0 -z-10 w-full" aria-hidden="true"></canvas>
 
 <x-navbar :page="$page ?? ''" />
 

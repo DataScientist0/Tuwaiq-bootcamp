@@ -6,7 +6,7 @@ const COLORS = ['#a78bfa', '#c084fc', '#e9d5ff', '#f2a54a', '#f472b6'];
 
 export function startLightRain(canvas) {
     const context = canvas.getContext('2d');
-    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 3);
     let width = 0;
     let height = 0;
     let drops = [];
@@ -22,21 +22,31 @@ export function startLightRain(canvas) {
     });
 
     const resize = () => {
+        // Phones change the height while scrolling (address bar), so only restart on width changes
+        if (window.innerWidth === width) {
+            return;
+        }
         width = window.innerWidth;
-        height = window.innerHeight;
+        height = Math.max(window.innerHeight, window.screen.height);
         canvas.width = width * pixelRatio;
         canvas.height = height * pixelRatio;
+        canvas.style.height = `${height}px`;
         context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 
         const dropCount = Math.round((width * height) / 14000);
         drops = Array.from({ length: dropCount }, () => makeDrop(true));
     };
 
-    const drawFrame = () => {
+    let lastTime = performance.now();
+
+    const drawFrame = (now) => {
+        // Speeds are tuned for 60 fps; scale them so slower screens move at the same pace
+        const frames = Math.min((now - lastTime) / (1000 / 60), 4);
+        lastTime = now;
         context.clearRect(0, 0, width, height);
 
         for (const drop of drops) {
-            drop.y += drop.speed;
+            drop.y += drop.speed * frames;
             if (drop.y - drop.length > height) {
                 Object.assign(drop, makeDrop(false));
             }

@@ -23,7 +23,7 @@
                         d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                 </svg>
                 <input id="search" name="search" type="search" value="{{ $search }}"
-                    placeholder="Search by words or author…" class="input rounded-2xl py-3.5 pr-28 pl-12 text-base">
+                    placeholder="Search quotes…" class="input rounded-2xl py-3.5 pr-28 pl-12 text-base">
                 <button type="submit" class="btn-primary absolute top-1/2 right-1.5 -translate-y-1/2 py-2">Search</button>
             </form>
 
